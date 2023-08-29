@@ -1,6 +1,6 @@
-projectTitle = "TeamVoidedTemplateMod"
-modId = "team-voided-template-mod"
-githubRepo = "Teamvoided/TeamVoidedTemplateMod"
+projectTitle = "HalfedLife"
+modId = "halfed_life"
+githubRepo = "theendercore/HalfedLife"
 discordServerInviteId = "KZ5Q364hEg"
 authors = [ "brokenfuse" ]
 majorMinecraftVersion = "1.20"

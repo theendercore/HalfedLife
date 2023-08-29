@@ -10,7 +10,7 @@ plugins {
 group = project.properties["maven_group"]!!
 version = project.properties["mod_version"]!!
 base.archivesName.set(project.properties["archives_base_name"] as String)
-description = "TeamVoided Template Description"
+description = "guns galore"
 
 repositories {
     mavenCentral()
@@ -18,12 +18,12 @@ repositories {
 
 modSettings {
     modId(base.archivesName.get())
-    modName("Team Voided Template")
+    modName("Halfed Life")
 
-    entrypoint("main", "org.teamvoided.template.Template::commonInit")
-    entrypoint("client", "org.teamvoided.template.Template::clientInit")
+    entrypoint("main", "com.theendercore.halfed_life.HalfedLife::commonInit")
+    entrypoint("client", "com.theendercore.halfed_life.HalfedLife::clientInit")
 
-    mixinFile("template.mixins.json")
+    mixinFile("halfed_life.mixins.json")
 
     isModParent(true)
 }

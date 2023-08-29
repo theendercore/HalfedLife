@@ -1,2 +1,5 @@
-# The TeamVoided Template
-Template mod by TeamVoided
+# Halfed Life
+
+Time to reduce your health
+
+fun gun mod
