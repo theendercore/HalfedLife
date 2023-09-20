@@ -1,0 +1,7 @@
+{
+	"parent": "halfed_life:block/barrel_template",
+	"textures": {
+		"1": "halfed_life:block/brown_barrel",
+		"particle": "minecraft:block/brown_wool"
+	}
+}

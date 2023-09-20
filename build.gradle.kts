@@ -12,20 +12,38 @@ version = project.properties["mod_version"]!!
 base.archivesName.set(project.properties["archives_base_name"] as String)
 description = "guns galore"
 
+val modid = base.archivesName.get()
+
+
 repositories {
     mavenCentral()
 }
 
 modSettings {
-    modId(base.archivesName.get())
+    modId(modid)
     modName("Halfed Life")
 
     entrypoint("main", "com.theendercore.halfed_life.HalfedLife::commonInit")
     entrypoint("client", "com.theendercore.halfed_life.HalfedLife::clientInit")
+    entrypoint("fabric-datagen", "com.theendercore.halfed_life.HalfedLifeData")
 
     mixinFile("halfed_life.mixins.json")
 
     isModParent(true)
+}
+
+
+loom {
+    runs {
+        create("data") {
+            client()
+            ideConfigGenerated(true)
+            vmArg("-Dfabric-api.datagen")
+            vmArg("-Dfabric-api.datagen.output-dir=${file("src/main/generated")}")
+            vmArg("-Dfabric-api.datagen.modid=${modid}")
+            runDir("build/datagen")
+        }
+    }
 }
 
 tasks {
@@ -44,3 +62,5 @@ tasks {
         withSourcesJar()
     }
 }
+
+sourceSets["main"].resources.srcDir("src/main/generated")

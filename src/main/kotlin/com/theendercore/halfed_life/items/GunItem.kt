@@ -1,34 +1,45 @@
 package com.theendercore.halfed_life.items
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
-import net.minecraft.entity.EntityType
-import net.minecraft.entity.LightningEntity
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.entity.projectile.PersistentProjectileEntity.PickupPermission
+import net.minecraft.item.ArrowItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
 
 
-class GunItem(settings: FabricItemSettings) : Item(settings) {
+class GunItem(settings: FabricItemSettings, val reloadSpeed: Int = 3) : Item(settings) {
+    constructor(reloadSpeed: Int) : this(FabricItemSettings(), reloadSpeed)
+    constructor() : this(FabricItemSettings(), 3)
 
-    constructor(): this(FabricItemSettings())
-
-    override fun use(world: World, user: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
+    override fun use(world: World, player: PlayerEntity, hand: Hand): TypedActionResult<ItemStack> {
         if (world.isClient) {
-            return TypedActionResult.pass(user.getStackInHand(hand))
+            return TypedActionResult.pass(player.getStackInHand(hand))
         }
 
-        val frontOfPlayer = user.blockPos.offset(user.horizontalFacing, 10)
+        if (!world.isClient) {
+            val stack = Items.ARROW.defaultStack
+            val persistentProjectileEntity = (Items.ARROW as ArrowItem).createArrow(world, stack, player)
+            persistentProjectileEntity.setProperties(
+                player, player.pitch, player.yaw, 0.0f, 3.0f, 1.0f
+            )
 
-        // Spawn the lightning bolt.
-        val lightningBolt = LightningEntity(EntityType.LIGHTNING_BOLT, world)
-        lightningBolt.setPosition(frontOfPlayer.ofCenter())
-        world.spawnEntity(lightningBolt)
+            /*val j = EnchantmentHelper.getLevel(Enchantments.POWER, stack)
+                if (j > 0) {
+                    persistentProjectileEntity.damage = persistentProjectileEntity.damage + j.toDouble() * 0.5 + 0.5
+                }*/
 
-        // Nothing has changed to the item stack,
-        // so we just return it how it was.
-        return TypedActionResult.success(user.getStackInHand(hand))
+            persistentProjectileEntity.pickupType = PickupPermission.DISALLOWED
+            player.itemCooldownManager.set(this, reloadSpeed)
+
+            world.spawnEntity(persistentProjectileEntity)
+
+        }
+
+        return TypedActionResult.pass(player.getStackInHand(hand))
     }
 }

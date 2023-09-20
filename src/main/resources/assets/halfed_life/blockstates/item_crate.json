@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "halfed_life:block/item_crate"
+    }
+  }
+}
