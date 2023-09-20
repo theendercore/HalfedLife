@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory
 @Suppress("unused")
 object HalfedLife {
     const val MODID = "halfed_life"
-
     @JvmField
     val LOGGER = LoggerFactory.getLogger(MODID)
 

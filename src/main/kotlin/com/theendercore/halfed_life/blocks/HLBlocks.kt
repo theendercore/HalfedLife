@@ -14,11 +14,10 @@ import java.util.*
 
 object HLBlocks {
     val BLOCKS = LinkedList<Block>()
-    val CUTOUT_LIST =  LinkedList<Block>()
+    val CUTOUT_LIST = LinkedList<Block>()
 
     val OAK_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val SPRUCE_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS))
-
 
     val ITEM_CRATE: Block = ItemCreate(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
 
@@ -26,6 +25,10 @@ object HLBlocks {
     val WHITE_BARREL: Block = HLBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
     val BROWN_BARREL: Block = HLBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
     val EXPLOSIVE_BARREL: Block = ExplosiveBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
+
+
+    val FENCE: Block = HLFence(FabricBlockSettings.copy(Blocks.CAULDRON))
+    val COMPUTER: Block = Computer(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
 
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
@@ -38,8 +41,20 @@ object HLBlocks {
         registerWithItem("brown_barrel", BROWN_BARREL)
         registerWithItem("explosive_barrel", EXPLOSIVE_BARREL)
 
+        registerWithItem("fence", FENCE)
+        registerWithItem("computer", COMPUTER)
 
-        CUTOUT_LIST.addAll(listOf(GRAY_BARREL, WHITE_BARREL, BROWN_BARREL, EXPLOSIVE_BARREL, ITEM_CRATE))
+        CUTOUT_LIST.addAll(
+            listOf(
+                GRAY_BARREL,
+                WHITE_BARREL,
+                BROWN_BARREL,
+                EXPLOSIVE_BARREL,
+                ITEM_CRATE,
+                FENCE,
+                COMPUTER
+            )
+        )
     }
 
     private fun registerWithItem(id: String, block: Block): Block {
