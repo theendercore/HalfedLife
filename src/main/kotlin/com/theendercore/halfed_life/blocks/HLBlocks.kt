@@ -43,7 +43,7 @@ object HLBlocks {
     val GRAFFITI_ORANGE_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
 
-    val TEST: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_YELLOW_2X1: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
@@ -65,7 +65,7 @@ object HLBlocks {
         registerWithItem("graffiti_black_1x1", GRAFFITI_BLACK_1X1)
         registerWithItem("graffiti_red_1x1", GRAFFITI_RED_1X1)
         registerWithItem("graffiti_orange_1x1", GRAFFITI_ORANGE_1X1)
-        registerWithItem("test_iod_he", TEST)
+        registerWithItem("graffiti_yellow_2x1", GRAFFITI_YELLOW_2X1)
 
         CUTOUT_LIST.addAll(
             listOf(
@@ -83,11 +83,13 @@ object HLBlocks {
             listOf(
                 GRAFFITI_BLACK_1X1,
                 GRAFFITI_RED_1X1,
-                GRAFFITI_ORANGE_1X1
+                GRAFFITI_ORANGE_1X1,
+                GRAFFITI_YELLOW_2X1
             )
         )
     }
 
+    @Suppress("UnstableApiUsage")
     private fun registerWithItem(id: String, block: Block): Block {
         val item = Registry.register(Registries.ITEM, id(id), BlockItem(block, FabricItemSettings()))
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS)

@@ -2,7 +2,7 @@ package com.theendercore.halfed_life.blocks
 
 
 import net.minecraft.util.shape.VoxelShapes
-import org.teamvoided.voidlib.core.rotateVoxelShape
+import org.teamvoided.voidlib.core.rotate
 
 
 open class Computer(settings: Settings) : HLHorizontalFacingBlock(settings) {
@@ -15,9 +15,9 @@ open class Computer(settings: Settings) : HLHorizontalFacingBlock(settings) {
 
     init {
         EAST_SHAPE =  shape
-        SOUTH_SHAPE = rotateVoxelShape(1, shape )
-        WEST_SHAPE = rotateVoxelShape(2, shape )
-        NORTH_SHAPE = rotateVoxelShape(3, shape )
+        SOUTH_SHAPE = shape.rotate(1)
+        WEST_SHAPE = shape.rotate(2)
+        NORTH_SHAPE = shape.rotate(3)
     }
 
 

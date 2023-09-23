@@ -6,8 +6,6 @@ import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
 
 class WallBlock2x1(settings: Settings) : BaseWallBlock(settings) {
-
-
     init {
         defaultState = stateManager.defaultState.with(RIGHT, false)
     }

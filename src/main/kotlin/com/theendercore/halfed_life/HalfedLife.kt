@@ -31,7 +31,6 @@ object HalfedLife {
     }
 
     fun id(path: String) = Identifier(MODID, path)
-    fun mc(path: String) = Identifier(path)
 
     fun getId(item: Item): Identifier = Registries.ITEM.getId(item)
     fun getId(block: Block): Identifier = Registries.BLOCK.getId(block)
