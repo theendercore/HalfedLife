@@ -8,7 +8,12 @@ import net.minecraft.data.client.ItemModelGenerator
 
 class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
-    val FULL_SQUARE_LIST = listOf(HLBlocks.OAK_CRATE, HLBlocks.SPRUCE_CRATE)
+    val FULL_SQUARE_LIST = listOf(
+        HLBlocks.OAK_CRATE,
+        HLBlocks.SPRUCE_CRATE,
+        HLBlocks.PILLARIUM,
+        HLBlocks.CUT_PILLARIUM
+    )
 
     override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
         try {

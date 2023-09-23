@@ -17,6 +17,10 @@ val modid = base.archivesName.get()
 
 repositories {
     mavenCentral()
+    maven("brokenfuse") {
+        url = uri("https://maven.teamvoided.org/releases")
+    }
+
 }
 
 modSettings {
@@ -32,6 +36,9 @@ modSettings {
     isModParent(true)
 }
 
+dependencies {
+    modImplementation("org.teamvoided:voidlib-core:1.5.2+1.20.1")
+}
 
 loom {
     runs {

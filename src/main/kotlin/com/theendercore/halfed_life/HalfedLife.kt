@@ -2,6 +2,7 @@ package com.theendercore.halfed_life
 
 import com.theendercore.halfed_life.blocks.HLBlocks
 import com.theendercore.halfed_life.blocks.HLBlocks.CUTOUT_LIST
+import com.theendercore.halfed_life.blocks.HLBlocks.TRANSPARENT_LIST
 import com.theendercore.halfed_life.items.HLItems
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.minecraft.block.Block
@@ -26,6 +27,7 @@ object HalfedLife {
 
     fun clientInit() {
         CUTOUT_LIST.forEach { BlockRenderLayerMap.INSTANCE.putBlock(it, RenderLayer.getCutout()) }
+        TRANSPARENT_LIST.forEach { BlockRenderLayerMap.INSTANCE.putBlock(it, RenderLayer.getTranslucent()) }
     }
 
     fun id(path: String) = Identifier(MODID, path)
