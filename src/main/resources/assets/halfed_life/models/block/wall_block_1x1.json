@@ -1,0 +1,21 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"tex": "block/oak_planks",
+		"particle": "#tex"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 0],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#tex"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#tex"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#tex"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#tex"},
+				"up": {"uv": [8, 0, 0, 0], "texture": "#tex"},
+				"down": {"uv": [8, 0, 0, 0], "texture": "#tex"}
+			}
+		}
+	]
+}

@@ -1,8 +1,8 @@
-
 package com.theendercore.halfed_life.blocks
 
 import com.theendercore.halfed_life.HalfedLife.id
-import com.theendercore.halfed_life.blocks.wallblock.WallBlock1x1
+import com.theendercore.halfed_life.blocks.wallblock.BaseWallBlock
+import com.theendercore.halfed_life.blocks.wallblock.WallBlock2x1
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -38,7 +38,12 @@ object HLBlocks {
     val CHAIN_LINK_FENCE: Block = ChainLinkFence(FabricBlockSettings.copy(Blocks.IRON_BARS))
     val COMPUTER: Block = Computer(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
 
-    val GRAFFITI_BLACK_1X1: Block = WallBlock1x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_BLACK_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_RED_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_ORANGE_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+
+
+    val TEST: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
@@ -54,10 +59,13 @@ object HLBlocks {
         registerWithItem("chain_link_fence", CHAIN_LINK_FENCE)
         registerWithItem("computer", COMPUTER)
 
-        registerWithItem("pillarium",PILLARIUM)
-        registerWithItem("cut_pillarium",CUT_PILLARIUM)
+        registerWithItem("pillarium", PILLARIUM)
+        registerWithItem("cut_pillarium", CUT_PILLARIUM)
 
-        registerWithItem("graffiti_black_1x1",GRAFFITI_BLACK_1X1)
+        registerWithItem("graffiti_black_1x1", GRAFFITI_BLACK_1X1)
+        registerWithItem("graffiti_red_1x1", GRAFFITI_RED_1X1)
+        registerWithItem("graffiti_orange_1x1", GRAFFITI_ORANGE_1X1)
+        registerWithItem("test_iod_he", TEST)
 
         CUTOUT_LIST.addAll(
             listOf(
@@ -67,14 +75,15 @@ object HLBlocks {
                 EXPLOSIVE_BARREL,
                 ITEM_CRATE,
                 CHAIN_LINK_FENCE,
-                COMPUTER,
-                GRAFFITI_BLACK_1X1
+                COMPUTER
             )
         )
 
         TRANSPARENT_LIST.addAll(
             listOf(
-                GRAFFITI_BLACK_1X1
+                GRAFFITI_BLACK_1X1,
+                GRAFFITI_RED_1X1,
+                GRAFFITI_ORANGE_1X1
             )
         )
     }
