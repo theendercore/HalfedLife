@@ -23,10 +23,10 @@ open class WoodenPallet(settings: Settings) : HLHorizontalFacingBlock(settings) 
         builder.add(FLIPPED)
     }
 
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState {
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
         val state = super.getPlacementState(ctx)
         println(ctx.player?.entityName)
-        return state.with(FLIPPED, (ctx.player?.isSneaking == true))
+        return state?.with(FLIPPED, (ctx.player?.isSneaking == true))
     }
 
 

@@ -37,6 +37,6 @@ open class HLHorizontalFacingBlock(settings: Settings) : HorizontalFacingBlock(s
         builder.add(FACING)
     }
 
-    override fun getPlacementState(ctx: ItemPlacementContext): BlockState =
+    override fun getPlacementState(ctx: ItemPlacementContext): BlockState? =
         defaultState.with(FACING, ctx.playerFacing.opposite)
 }

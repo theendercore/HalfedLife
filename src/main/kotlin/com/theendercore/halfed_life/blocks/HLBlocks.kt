@@ -2,6 +2,7 @@ package com.theendercore.halfed_life.blocks
 
 import com.theendercore.halfed_life.HalfedLife.id
 import com.theendercore.halfed_life.blocks.wallblock.BaseWallBlock
+import com.theendercore.halfed_life.blocks.wallblock.WallBlock1x2
 import com.theendercore.halfed_life.blocks.wallblock.WallBlock2x1
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
@@ -41,8 +42,13 @@ object HLBlocks {
     val GRAFFITI_BLACK_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
     val GRAFFITI_RED_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
     val GRAFFITI_ORANGE_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-
     val GRAFFITI_YELLOW_2X1: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+
+    val POSTER_RUNES: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_GOLEM: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_FACE: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_DARK_RUNES: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_CROSSBOW: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
@@ -67,6 +73,12 @@ object HLBlocks {
         registerWithItem("graffiti_orange_1x1", GRAFFITI_ORANGE_1X1)
         registerWithItem("graffiti_yellow_2x1", GRAFFITI_YELLOW_2X1)
 
+        registerWithItem("poster_runes", POSTER_RUNES)
+        registerWithItem("poster_golem", POSTER_GOLEM)
+        registerWithItem("poster_face", POSTER_FACE)
+        registerWithItem("poster_dark_runes", POSTER_DARK_RUNES)
+        registerWithItem("poster_crossbow", POSTER_CROSSBOW)
+
 
         CUTOUT_LIST.addAll(
             listOf(
@@ -86,7 +98,12 @@ object HLBlocks {
                 GRAFFITI_BLACK_1X1,
                 GRAFFITI_RED_1X1,
                 GRAFFITI_ORANGE_1X1,
-                GRAFFITI_YELLOW_2X1
+                GRAFFITI_YELLOW_2X1,
+                POSTER_RUNES,
+                POSTER_GOLEM,
+                POSTER_FACE,
+                POSTER_DARK_RUNES,
+                POSTER_CROSSBOW
             )
         )
     }
