@@ -23,49 +23,50 @@ object HLBlocks {
 
     val OAK_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val SPRUCE_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS))
-
     val PILLARIUM: Block = Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.NETHERITE))
     val CUT_PILLARIUM: Block = Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.NETHERITE))
 
     val ITEM_CRATE: Block = ItemCreate(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
+    val WOODEN_PALLET = WoodenPallet(FabricBlockSettings.copy(Blocks.OAK_TRAPDOOR))
 
     val GRAY_BARREL: Block = HLBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
     val WHITE_BARREL: Block = HLBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
     val BROWN_BARREL: Block = HLBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
     val EXPLOSIVE_BARREL: Block = ExplosiveBarrel(FabricBlockSettings.copy(Blocks.CAULDRON))
 
+    val COMPUTER: Block = Computer(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
 
     val CHAIN_LINK_FENCE: Block = ChainLinkFence(FabricBlockSettings.copy(Blocks.IRON_BARS))
-    val COMPUTER: Block = Computer(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
 
     val GRAFFITI_BLACK_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
     val GRAFFITI_RED_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
     val GRAFFITI_ORANGE_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-
 
     val GRAFFITI_YELLOW_2X1: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
         registerWithItem("spruce_crate", SPRUCE_CRATE)
+        registerWithItem("pillarium", PILLARIUM)
+        registerWithItem("cut_pillarium", CUT_PILLARIUM)
 
         registerWithItem("item_crate", ITEM_CRATE)
+        registerWithItem("wooden_pallet", WOODEN_PALLET)
 
         registerWithItem("gray_barrel", GRAY_BARREL)
         registerWithItem("white_barrel", WHITE_BARREL)
         registerWithItem("brown_barrel", BROWN_BARREL)
         registerWithItem("explosive_barrel", EXPLOSIVE_BARREL)
 
-        registerWithItem("chain_link_fence", CHAIN_LINK_FENCE)
         registerWithItem("computer", COMPUTER)
 
-        registerWithItem("pillarium", PILLARIUM)
-        registerWithItem("cut_pillarium", CUT_PILLARIUM)
+        registerWithItem("chain_link_fence", CHAIN_LINK_FENCE)
 
         registerWithItem("graffiti_black_1x1", GRAFFITI_BLACK_1X1)
         registerWithItem("graffiti_red_1x1", GRAFFITI_RED_1X1)
         registerWithItem("graffiti_orange_1x1", GRAFFITI_ORANGE_1X1)
         registerWithItem("graffiti_yellow_2x1", GRAFFITI_YELLOW_2X1)
+
 
         CUTOUT_LIST.addAll(
             listOf(
@@ -75,7 +76,8 @@ object HLBlocks {
                 EXPLOSIVE_BARREL,
                 ITEM_CRATE,
                 CHAIN_LINK_FENCE,
-                COMPUTER
+                COMPUTER,
+                WOODEN_PALLET
             )
         )
 

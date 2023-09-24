@@ -38,6 +38,7 @@ modSettings {
 
 dependencies {
     modImplementation("org.teamvoided:voidlib-core:1.5.3+1.20.1")
+    include("org.teamvoided:voidlib-core:1.5.3+1.20.1")
 }
 
 loom {
