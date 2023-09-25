@@ -7,8 +7,7 @@ import com.theendercore.halfed_life.blocks.wallblock.WallBlock2x1
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.minecraft.block.Block
-import net.minecraft.block.Blocks
+import net.minecraft.block.*
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemGroups
 import net.minecraft.registry.Registries
@@ -25,7 +24,10 @@ object HLBlocks {
     val OAK_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val SPRUCE_CRATE: Block = Block(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS))
     val PILLARIUM: Block = Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.NETHERITE))
-    val CUT_PILLARIUM: Block = Block(FabricBlockSettings.copy(Blocks.IRON_BLOCK).sounds(BlockSoundGroup.NETHERITE))
+    val CUT_PILLARIUM: Block = Block(FabricBlockSettings.copy(PILLARIUM))
+
+    val PILLARIUM_SLAB: Block = SlabBlock(FabricBlockSettings.copy(PILLARIUM))
+    val CUT_PILLARIUM_SLAB: Block = SlabBlock(FabricBlockSettings.copy(CUT_PILLARIUM))
 
     val ITEM_CRATE: Block = ItemCreate(FabricBlockSettings.copy(Blocks.OAK_PLANKS))
     val WOODEN_PALLET = WoodenPallet(FabricBlockSettings.copy(Blocks.OAK_TRAPDOOR))
@@ -50,11 +52,20 @@ object HLBlocks {
     val POSTER_DARK_RUNES: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
     val POSTER_CROSSBOW: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
+    val BARRIER: Block = HLBarrier(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
+
+
+    val METAL_DOOR: Block = DoorBlock(FabricBlockSettings.copy(Blocks.IRON_DOOR), BlockSetType.IRON)
+    val WOODEN_DOOR: Block = DoorBlock(FabricBlockSettings.copy(Blocks.OAK_DOOR), BlockSetType.OAK)
+
     fun init() {
         registerWithItem("oak_crate", OAK_CRATE)
         registerWithItem("spruce_crate", SPRUCE_CRATE)
         registerWithItem("pillarium", PILLARIUM)
         registerWithItem("cut_pillarium", CUT_PILLARIUM)
+
+        registerWithItem("pillarium_slab", PILLARIUM_SLAB)
+        registerWithItem("cut_pillarium_slab", CUT_PILLARIUM_SLAB)
 
         registerWithItem("item_crate", ITEM_CRATE)
         registerWithItem("wooden_pallet", WOODEN_PALLET)
@@ -78,6 +89,11 @@ object HLBlocks {
         registerWithItem("poster_face", POSTER_FACE)
         registerWithItem("poster_dark_runes", POSTER_DARK_RUNES)
         registerWithItem("poster_crossbow", POSTER_CROSSBOW)
+
+        registerWithItem("barrier", BARRIER)
+
+        registerWithItem("metal_door", METAL_DOOR)
+        registerWithItem("wooden_door", WOODEN_DOOR)
 
 
         CUTOUT_LIST.addAll(
@@ -103,7 +119,8 @@ object HLBlocks {
                 POSTER_GOLEM,
                 POSTER_FACE,
                 POSTER_DARK_RUNES,
-                POSTER_CROSSBOW
+                POSTER_CROSSBOW,
+                BARRIER
             )
         )
     }
