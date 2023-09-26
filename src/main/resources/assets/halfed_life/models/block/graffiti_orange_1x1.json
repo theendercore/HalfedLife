@@ -1,6 +1,0 @@
-{
-	"parent": "halfed_life:block/wall_block_1x1",
-	"textures": {
-		"tex": "halfed_life:block/graffiti_orange_1x1"
-	}
-}

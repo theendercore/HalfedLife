@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "wooden_pallet",
+	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "halfed_life:block/pallet",

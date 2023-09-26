@@ -2,8 +2,6 @@ package com.theendercore.halfed_life.blocks
 
 import com.theendercore.halfed_life.HalfedLife.id
 import com.theendercore.halfed_life.blocks.wallblock.BaseWallBlock
-import com.theendercore.halfed_life.blocks.wallblock.WallBlock1x2
-import com.theendercore.halfed_life.blocks.wallblock.WallBlock2x1
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
@@ -41,19 +39,25 @@ object HLBlocks {
 
     val CHAIN_LINK_FENCE: Block = ChainLinkFence(FabricBlockSettings.copy(Blocks.IRON_BARS))
 
-    val GRAFFITI_BLACK_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val GRAFFITI_RED_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val GRAFFITI_ORANGE_1X1: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val GRAFFITI_YELLOW_2X1: Block = WallBlock2x1(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_BLACK_TEXT: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_RED_TEXT: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_ORANGE_SYMBOL: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
-    val POSTER_RUNES: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val POSTER_GOLEM: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val POSTER_FACE: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val POSTER_DARK_RUNES: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
-    val POSTER_CROSSBOW: Block = WallBlock1x2(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_YELLOW: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_RED_X: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+
+    val GRAFFITI_HEAD: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val GRAFFITI_GREEN_RED: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+
+    val GRAFFITI_BLUE_RED: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+
+    val POSTER_RUNES: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_GOLEM: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_FACE: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_DARK_RUNES: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
+    val POSTER_CROSSBOW: Block = BaseWallBlock(FabricBlockSettings.copy(Blocks.WHITE_STAINED_GLASS_PANE))
 
     val BARRIER: Block = HLBarrier(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE))
-
 
     val METAL_DOOR: Block = DoorBlock(FabricBlockSettings.copy(Blocks.IRON_DOOR), BlockSetType.IRON)
     val WOODEN_DOOR: Block = DoorBlock(FabricBlockSettings.copy(Blocks.OAK_DOOR), BlockSetType.OAK)
@@ -79,10 +83,17 @@ object HLBlocks {
 
         registerWithItem("chain_link_fence", CHAIN_LINK_FENCE)
 
-        registerWithItem("graffiti_black_1x1", GRAFFITI_BLACK_1X1)
-        registerWithItem("graffiti_red_1x1", GRAFFITI_RED_1X1)
-        registerWithItem("graffiti_orange_1x1", GRAFFITI_ORANGE_1X1)
-        registerWithItem("graffiti_yellow_2x1", GRAFFITI_YELLOW_2X1)
+        registerWithItem("graffiti_black_text", GRAFFITI_BLACK_TEXT)
+        registerWithItem("graffiti_red_text", GRAFFITI_RED_TEXT)
+        registerWithItem("graffiti_orange_symbol", GRAFFITI_ORANGE_SYMBOL)
+
+        registerWithItem("graffiti_yellow", GRAFFITI_YELLOW)
+        registerWithItem("graffiti_red_x", GRAFFITI_RED_X)
+
+        registerWithItem("graffiti_head", GRAFFITI_HEAD)
+        registerWithItem("graffiti_green_red", GRAFFITI_GREEN_RED)
+
+        registerWithItem("graffiti_blue_red", GRAFFITI_BLUE_RED)
 
         registerWithItem("poster_runes", POSTER_RUNES)
         registerWithItem("poster_golem", POSTER_GOLEM)
@@ -105,22 +116,26 @@ object HLBlocks {
                 ITEM_CRATE,
                 CHAIN_LINK_FENCE,
                 COMPUTER,
-                WOODEN_PALLET
-            )
-        )
-
-        TRANSPARENT_LIST.addAll(
-            listOf(
-                GRAFFITI_BLACK_1X1,
-                GRAFFITI_RED_1X1,
-                GRAFFITI_ORANGE_1X1,
-                GRAFFITI_YELLOW_2X1,
+                WOODEN_PALLET,
                 POSTER_RUNES,
                 POSTER_GOLEM,
                 POSTER_FACE,
                 POSTER_DARK_RUNES,
                 POSTER_CROSSBOW,
-                BARRIER
+            )
+        )
+
+        TRANSPARENT_LIST.addAll(
+            listOf(
+                GRAFFITI_BLACK_TEXT,
+                GRAFFITI_RED_TEXT,
+                GRAFFITI_ORANGE_SYMBOL,
+                GRAFFITI_YELLOW,
+                GRAFFITI_RED_X,
+                GRAFFITI_HEAD,
+                GRAFFITI_GREEN_RED,
+                GRAFFITI_BLUE_RED,
+                BARRIER,
             )
         )
     }

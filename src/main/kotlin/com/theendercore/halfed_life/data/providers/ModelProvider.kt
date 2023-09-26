@@ -3,15 +3,12 @@ package com.theendercore.halfed_life.data.providers
 import com.theendercore.halfed_life.HalfedLife.id
 import com.theendercore.halfed_life.blocks.HLBlocks
 import com.theendercore.halfed_life.blocks.WoodenPallet
-import com.theendercore.halfed_life.blocks.wallblock.WallBlock2x1
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
-import net.minecraft.block.enums.DoubleBlockHalf
 import net.minecraft.data.client.ItemModelGenerator
 import net.minecraft.data.client.model.*
 import net.minecraft.data.client.model.BlockStateModelGenerator.*
-import net.minecraft.state.property.Properties
 import net.minecraft.util.Identifier
 import java.util.*
 
@@ -28,57 +25,65 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
         Pair(HLBlocks.PILLARIUM, HLBlocks.PILLARIUM_SLAB),
         Pair(HLBlocks.CUT_PILLARIUM, HLBlocks.CUT_PILLARIUM_SLAB)
     )
-    private val wallBlock1x2 = listOf(
+
+    private val list1x1 = listOf(
+        HLBlocks.GRAFFITI_BLACK_TEXT,
+        HLBlocks.GRAFFITI_ORANGE_SYMBOL,
+        HLBlocks.GRAFFITI_RED_TEXT,
+        HLBlocks.CHAIN_LINK_FENCE,
+    )
+
+    private val list2x2 = listOf(
         HLBlocks.POSTER_RUNES,
         HLBlocks.POSTER_GOLEM,
         HLBlocks.POSTER_FACE,
         HLBlocks.POSTER_DARK_RUNES,
-        HLBlocks.POSTER_CROSSBOW
+        HLBlocks.POSTER_CROSSBOW,
+        HLBlocks.GRAFFITI_YELLOW,
+        HLBlocks.GRAFFITI_RED_X,
+        HLBlocks.GRAFFITI_GREEN_RED,
+        HLBlocks.GRAFFITI_HEAD
     )
 
+    private val list3x3 = listOf(
+        HLBlocks.GRAFFITI_BLUE_RED
+    )
 
-    private val WALL_BLOCK: Identifier = id("block/wall_block_1x1")
+    private val hzBlock = listOf(
+        HLBlocks.COMPUTER,
+        HLBlocks.ITEM_CRATE,
+    )
+//    private val barrels = listOf(
+//        HLBlocks.BROWN_BARREL,
+//        HLBlocks.WHITE_BARREL,
+//        HLBlocks.GRAY_BARREL,
+//        HLBlocks.EXPLOSIVE_BARREL
+//    )
+
+
+    private val wallBlock1x1: Identifier = id("block/template/wallblock_1x1")
+    private val wallBlock2x2: Identifier = id("block/template/wallblock_2x2")
+    private val wallBlock3x3: Identifier = id("block/template/wallblock_3x3")
+//    private val barrel: Identifier = id("block/template/barrel")
+    private val IMG: TextureKey = TextureKey.of("img")
+    val BASE = TextureKey.of("base")
 
     override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
 
         fullCubes.forEach { gen.registerSimpleCubeAll(it) }
-        wallBlock1x2.forEach { gen.wallBlock1x2(it) }
+
+        list1x1.forEach { gen.wallBlock(it, wallBlock1x1) }
+        list2x2.forEach { gen.wallBlock(it, wallBlock2x2) }
+        list3x3.forEach { gen.wallBlock(it, wallBlock3x3) }
+
+        hzBlock.forEach { gen.horizontalFacingND(it) }
+//        barrels.forEach {
+//            gen.parentedModel(it, barrel)
+//        }
+
         slabs.forEach { gen.registerCustomSlab(it.key, it.value) }
 
-        gen.parented(HLBlocks.GRAFFITI_YELLOW_2X1.modelSuffixed("_left"), HLBlocks.GRAFFITI_YELLOW_2X1)
-        gen.blockStateCollector.accept(
-            VariantsBlockStateSupplier.create(HLBlocks.GRAFFITI_YELLOW_2X1)
-                .coordinate(createSouthDefaultHorizontalRotationStates()).coordinate(
-                    BlockStateVariantMap.create(WallBlock2x1.RIGHT).register(
-                        false, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, gen.wallBlock1x1Model(HLBlocks.GRAFFITI_YELLOW_2X1, "_left")
-                        )
-                    ).register(
-                        true, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, gen.wallBlock1x1Model(HLBlocks.GRAFFITI_YELLOW_2X1, "_right")
-                        )
-                    )
-                )
-        )
-
-
-        gen.blockStateCollector.accept(
-            VariantsBlockStateSupplier.create(
-                HLBlocks.WOODEN_PALLET,
-                BlockStateVariant.create().put(VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelId())
-            ).coordinate(createNorthDefaultHorizontalRotationStates())
-                .coordinate(
-                    BlockStateVariantMap.create(WoodenPallet.FLIPPED).register(
-                        false, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelId()
-                        )
-                    ).register(
-                        true, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelSuffixed("_flipped")
-                        )
-                    )
-                )
-        )
+        gen.woodenPallet()
 
         gen.blockStateCollector.accept(
             createFenceBlockState(HLBlocks.BARRIER, id("barrier_post").block, id("barrier_side").block)
@@ -93,36 +98,51 @@ class ModelProvider(output: FabricDataOutput) : FabricModelProvider(output) {
 
     private fun BlockStateModelGenerator.parented(parent: Identifier, block: Block): Identifier =
         Model(parent.myb, Optional.empty()).upload(
-            ModelIds.getItemModelId(block.asItem()),
-            Texture(),
-            this.modelCollector
+            ModelIds.getItemModelId(block.asItem()), Texture(), this.modelCollector
         )
 
-    private fun BlockStateModelGenerator.wallBlock1x1Model(block: Block, suffix: String): Identifier =
-        this.wallBlock1x1Model(block, suffix, true)
+    private fun BlockStateModelGenerator.wallBlock(block: Block, parent: Identifier) {
+        this.wallBlocModel(block, parent)
+        this.horizontalFacing(block)
+    }
 
-    private fun BlockStateModelGenerator.wallBlock1x1Model(block: Block, suffix: String, x: Boolean): Identifier {
-        val ketText = TextureKey.of("tex")
-        return Model(WALL_BLOCK.myb, Optional.empty(), ketText).upload(
-            block.modelSuffixed(if (x) suffix else ""),
-            Texture().put(ketText, block.modelSuffixed(suffix)),
-            this.modelCollector
+    private fun BlockStateModelGenerator.wallBlocModel(block: Block, parent: Identifier): Identifier =
+        Model(parent.myb, Optional.empty(), IMG)
+            .upload(block.modelId(), Texture().put(IMG, block.modelId()), this.modelCollector)
+
+    private fun BlockStateModelGenerator.parentedModel(block: Block, parent: Identifier): Identifier =
+        Model(parent.myb, Optional.empty(), BASE)
+            .upload(block.modelId(), Texture().put(BASE, block.modelId()), this.modelCollector)
+
+    private fun BlockStateModelGenerator.horizontalFacing(block: Block) {
+        this.blockStateCollector.accept(
+            VariantsBlockStateSupplier
+                .create(block, BlockStateVariant.create().put(VariantSettings.MODEL, block.modelId()))
+                .coordinate(createSouthDefaultHorizontalRotationStates())
+        )
+    }
+    private fun BlockStateModelGenerator.horizontalFacingND(block: Block) {
+        this.blockStateCollector.accept(
+            VariantsBlockStateSupplier
+                .create(block, BlockStateVariant.create().put(VariantSettings.MODEL, block.modelId()))
+                .coordinate(createNorthDefaultHorizontalRotationStates())
         )
     }
 
-    private fun BlockStateModelGenerator.wallBlock1x2(block: Block) {
-        this.parented(block.modelSuffixed("_top"), block)
+    private fun BlockStateModelGenerator.woodenPallet() {
         this.blockStateCollector.accept(
-            VariantsBlockStateSupplier.create(block)
-                .coordinate(createSouthDefaultHorizontalRotationStates())
+            VariantsBlockStateSupplier.create(
+                HLBlocks.WOODEN_PALLET,
+                BlockStateVariant.create().put(VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelId())
+            ).coordinate(createNorthDefaultHorizontalRotationStates())
                 .coordinate(
-                    BlockStateVariantMap.create(Properties.DOUBLE_BLOCK_HALF).register(
-                        DoubleBlockHalf.UPPER, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, this.wallBlock1x1Model(block, "_top")
+                    BlockStateVariantMap.create(WoodenPallet.FLIPPED).register(
+                        false, BlockStateVariant.create().put(
+                            VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelId()
                         )
                     ).register(
-                        DoubleBlockHalf.LOWER, BlockStateVariant.create().put(
-                            VariantSettings.MODEL, this.wallBlock1x1Model(block, "_bottom")
+                        true, BlockStateVariant.create().put(
+                            VariantSettings.MODEL, HLBlocks.WOODEN_PALLET.modelSuffixed("_flipped")
                         )
                     )
                 )
